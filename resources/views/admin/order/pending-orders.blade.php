@@ -54,6 +54,7 @@ Order
                         <th>Order No.</th>
                         <th>Order Total</th>
                         <th>Payment type</th>
+                        <th>Order Time</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -63,6 +64,7 @@ Order
                     <tr>
                         <td>{{$key+1}}</td>
                         <td> {{$order->order_no}} </td>
+
                         <td>{{$order->order_total}} TK</td>
                         <td>
                             {{$order->payment->payment_method }}
@@ -71,12 +73,15 @@ Order
                             @endif
                         </td>
                         <td>
+                            {{$order->created_at->diffForHumans()}}({{$order->created_at->format('d.m.Y')}})
+                        </td>
+                        <td>
                              @if ($order->status  == '0')
                                 <span class="badge badge-danger">Pending</span>
                              @endif
                         </td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm" ><i class="fa fa-like"></i>Active</a>
+                            <a href=" {{route('order.active',$order->id)}} " class="btn btn-info btn-sm" ><i class="fa fa-like"></i>Active</a>
                         </td>
                     </tr>
                     @endforeach

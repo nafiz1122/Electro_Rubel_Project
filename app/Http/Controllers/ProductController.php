@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::all();
+        $products = Product::orderBy('id','desc')->get();
         return view('admin.product.product-list',compact('products'));
     }
 
@@ -54,7 +54,8 @@ class ProductController extends Controller
             $this->validate($request,[
                 'category_id'=>'required|max:8',
                 'brand_id'=>'required',
-                'product_name'=>'required',
+                'name'=>'required|unique:products|max:20',
+                'code'=>'required|unique:products|max:15',
                 'product_price'=>'required',
                 'short_des'=>'required',
                 'long_des'=>'required',
@@ -64,9 +65,9 @@ class ProductController extends Controller
 
             $product->category_id = $request->category_id;
             $product->brand_id = $request->brand_id;
-            $product->name = $request->product_name;
+            $product->name = $request->name;
             $product->slug = str_slug($product->name, "-");
-            $product->code = $request->product_code;
+            $product->code = $request->code;
             $product->short_des = $request->short_des;
             $product->long_des = $request->long_des;
             $product->price = $request->product_price;
@@ -127,9 +128,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function view(Product $product,$id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.product.view-product',compact('product'));
     }
 
     /**

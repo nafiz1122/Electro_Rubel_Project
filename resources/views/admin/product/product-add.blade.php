@@ -75,7 +75,7 @@ Size
                         </div>
                         <div class="form-group col-md-4">
                             <label>Product name</label><br>
-                            <input class="form-control" name="product_name" type="text" placeholder="Product Name">
+                            <input class="form-control" name="name" type="text" placeholder="Product Name">
                         </div>
                         <div class="form-group col-md-4">
                           <label>Input Sizes</label><br>
@@ -94,7 +94,7 @@ Size
 
                         <div class="form-group col-md-4">
                             <label>Product Code</label><br>
-                            <input class="form-control" name="product_code" type="text" placeholder="Product Code">
+                            <input class="form-control" name="code" type="text" placeholder="Product Code">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Short Description</label><br>
@@ -142,10 +142,10 @@ Size
       $(function () {
             $('#myform').validate({
                 rules: {
-                    product_name: {
+                    name: {
                         required: true,
                     },
-                    product_code: {
+                    code: {
                         required: true,
                     },
                     product_price: {

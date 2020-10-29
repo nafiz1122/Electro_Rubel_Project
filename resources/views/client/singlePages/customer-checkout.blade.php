@@ -23,6 +23,19 @@
         margin-bottom: 5px;
         display: inline-block;
     }
+    .help-block {
+    display: block;
+    font-weight:300;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: red;
+    }
+    .has-error{
+        border:1px solid red;
+    }
+    .has-valid{
+        border:1px solid green;
+    }
 </style>
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
@@ -45,13 +58,16 @@
 		<!-- /BREADCRUMB -->
 <div class="container">
     <div class="row">
+        @if(Session::has('message'))
+            <p class="alert alert-danger">{{ Session::get('message') }}</p>
+        @endif
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1><span>1</span>Customer Information</h1 class="text-center">
                 </div>
                 <div class="panel-body">
-                    <form action=" {{route('checkout.store')}} " method="POST">
+                    <form id="quickForm" action=" {{route('checkout.store')}} " method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="">Customer Name</label>
@@ -155,7 +171,34 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    function myFunction() {
+         var payment_method = document.getElementById("payment_method").value;
+         var show_field =document.querySelector("#show_field");
+             if(payment_method == "Bkash"){
+                 show_field.style.display ="block";
+             }else{
+                 show_field.style.display ="none";
+             }
+         }
 
+
+
+
+
+
+
+     // document.write("okokok");
+     // $(document).on('change','#payment_method',function(){
+     //     var payment_method = $(this).val();
+     //     if(payment_method == "Bkash"){
+     //         alert("ok");
+     //         //$(.show_field).show();
+     //     }else{
+     //         $(.show_field).hide();
+     //     }
+     // });
+ </script>
 
 
 @endsection

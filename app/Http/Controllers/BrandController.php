@@ -106,7 +106,7 @@ class BrandController extends Controller
          $deleteBrand->delete();
          //notification
          $notification = array(
-             'message' =>'Brand add Successfully ',
+             'message' =>'Brand Delete Successfully ',
              'alert-type' =>'error'
          );
          return back()->with($notification);

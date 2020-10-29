@@ -53,6 +53,7 @@
                         $total = 0;
                     @endphp
                     @foreach ($contents as $data)
+                    
                     <tr>
                         <td class="cart_product">
                             <a href=""><img height="80px" src="public/Upload/Product_images/{{ $data->options->image }}" alt=""></a>
@@ -103,6 +104,9 @@
 <section id="do_action">
     <div class="container">
         <div class="heading">
+            @if(Session::has('message'))
+                <p class="alert alert-danger">{{ Session::get('message') }}</p>
+            @endif
             <h3>What would you like to do next?</h3>
             <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
         </div>

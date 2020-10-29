@@ -14,16 +14,22 @@ use DB;
 use Cart;
 class CheckoutController extends Controller
 {
-    public function checkout()
+    public function checkout(REQUEST $request)
     {
+
         $categories = Product::select('category_id')->groupBy('category_id')->get();
+
+
         return view('client.singlePages.customer-checkout',compact('categories'));
+
     }
 
 
     public function checkout_store(REQUEST $request)
     {
-
+        if($request->order_total == 0){
+            return back()->with('message','Please add any product');
+        }else{
 
         $this->validate($request,[
             'payment_method' => 'required',
@@ -33,8 +39,6 @@ class CheckoutController extends Controller
                 'transaction_no' => 'required',
             ]);
         }
-
-
         DB::transaction(function () use($request) {
             $shipping = new Shipping();
             $shipping->customer_name    = $request->name;
@@ -82,6 +86,7 @@ class CheckoutController extends Controller
             Cart::destroy();
         });
         return redirect()->route('index')->with('message',"Order Successfully we will contact with you soon");
+        }
     }
 
 

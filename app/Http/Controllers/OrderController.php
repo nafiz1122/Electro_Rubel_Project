@@ -30,4 +30,14 @@ class OrderController extends Controller
         //dd($order->shipping);
         return view('admin.order.order-details',compact('order'));
     }
+    //order active
+    public function active_order($id)
+    {
+        $order_data = Order::find($id);
+        $order_data->status = '1';
+        $order_data->update();
+
+        return back()->with('message',"Order Approved Successfully");
+
+    }
 }

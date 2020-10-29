@@ -98,7 +98,7 @@
                                 <td width="15%" >
                                     <a class="btn btn-info btn-sm" href=" {{route('user.edit',$user->id)}} "> <i class="fa fa-edit" ></i> </a>
 
-                                    <a class="btn btn-danger btn-sm" href="{{route('user.delete',$user->id)}}"> <i class="fa fa-trash" ></i> </a>
+                                    <a id="delete" class="btn btn-danger btn-sm" href="{{route('user.delete',$user->id)}}"> <i class="fa fa-trash" ></i> </a>
                                 </td>
                             </tr>
                         @endforeach

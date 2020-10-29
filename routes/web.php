@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/',[App\Http\Controllers\ClientController::class, 'index'])->name('index');
 Route::get('/product-store',[App\Http\Controllers\ClientController::class, 'product_store'])->name('product_store');
 Route::get('/product-category/{category_id}',[App\Http\Controllers\ClientController::class, 'productByCategory'])->name('product_by_category');
+Route::get('/product-brand/{brand_id}',[App\Http\Controllers\ClientController::class, 'productByBrand'])->name('product_by_brand');
 
 Route::get('/product_details/{slug}',[App\Http\Controllers\ClientController::class, 'product_Details']);
 
@@ -62,6 +63,14 @@ Route::group(['middleware' => ['auth','admin']], function () {
         Route::post('/update/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('user.update');
         Route::get('/delete/{id}',[App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
     });
+    Route::group(['prefix' => 'slider'], function () {
+        //user crud
+        Route::get('/list',[App\Http\Controllers\SliderController::class, 'index'])->name('slider.list');
+        Route::post('/store',[App\Http\Controllers\SliderController::class, 'store'])->name('slider.store');
+        // Route::get('/edit/{id}',[App\Http\Controllers\SliderController::class, 'edit'])->name('slider.edit');
+        // Route::post('/update/{id}',[App\Http\Controllers\SliderController::class, 'update'])->name('slider.update');
+        Route::get('/delete/{id}',[App\Http\Controllers\SliderController::class, 'destroy'])->name('slider.delete');
+    });
     Route::group(['prefix' => 'category'], function () {
         //user crud
         Route::get('/list',[App\Http\Controllers\CategoryController::class, 'index'])->name('category.list');
@@ -100,6 +109,8 @@ Route::group(['middleware' => ['auth','admin']], function () {
         Route::get('/pending',[App\Http\Controllers\OrderController::class, 'pending_order'])->name('order.pending');
         Route::get('/approved',[App\Http\Controllers\OrderController::class, 'approved_order'])->name('order.approved');
         Route::get('/orderDetials/{id}',[App\Http\Controllers\OrderController::class, 'order_details'])->name('order.details');
+
+        Route::get('/pendingActive/{id}',[App\Http\Controllers\OrderController::class, 'active_order'])->name('order.active');
 
     });
 });

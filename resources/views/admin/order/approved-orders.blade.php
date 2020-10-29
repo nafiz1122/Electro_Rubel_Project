@@ -54,7 +54,9 @@ Size
                         <th>Order No.</th>
                         <th>Order Total</th>
                         <th>Payment type</th>
+                        <th>Order Time</th>
                         <th>Status</th>
+
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -71,11 +73,17 @@ Size
                             @endif
                         </td>
                         <td>
+
+                            {{$order->created_at->diffForHumans()}}({{$order->created_at->format('d.m.Y')}})
+
+                        </td>
+                        <td>
                              @if ($order->status  == '1')
                                 <span class="badge badge-primary">Approved</span>
 
                              @endif
                         </td>
+
                         <td>
                             <a href=" {{route('order.details',$order->id)}} " class="btn btn-info btn-sm" ><i class="fa fa-eye"></i>Details</a>
                         </td>

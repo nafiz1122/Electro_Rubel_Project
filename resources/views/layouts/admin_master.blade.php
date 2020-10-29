@@ -48,16 +48,10 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
+            {{-- <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Search"
                         aria-label="Search">
@@ -67,7 +61,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -161,6 +155,23 @@
                             <a href="#" class="nav-link">
                                 <i class="fas fa-user mr-2"></i>
                                 <p>
+                                    Manage Slider
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href=" {{route('slider.list')}} " class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Slider List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-user mr-2"></i>
+                                <p>
                                     Manage Category
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
@@ -200,6 +211,12 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href=" {{route('product.add')}} " class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Add Product</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href=" {{route('product.list')}} " class="nav-link">
                                         <i class="fas fa-circle nav-icon"></i>
@@ -302,6 +319,8 @@
     <script src="/admin_assets/dist/js/toastr.min.js"></script>
     <!-- Toastr Notification -->
     <script src="/admin_assets/dist/js/tinymce.min.js"></script>
+    <!-- Sweet Alert Notification -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Tag input Notification -->
     <script src="/admin_assets/dist/js/bootstrap-tagsinput.js"></script>
     <script src="/admin_assets/dist/js/bootstrap-tagsinput-angular.js"></script>
@@ -425,11 +444,40 @@
           toolbar_mode: 'floating',
         });
       </script>
-      //data table
+      {{-- //data table --}}
       <script>
           $(document).ready(function() {
           $('#mydatatable').DataTable();
           } );
+      </script>
+      {{-- ///sweet alert --}}
+      <script>
+          $(document).on('click','#delete',function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete this data!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+                        Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                        )
+                    }
+                })
+          });
+
+
+
+
       </script>
 </body>
 

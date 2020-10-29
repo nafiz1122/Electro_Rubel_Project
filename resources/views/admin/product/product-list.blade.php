@@ -25,7 +25,6 @@ Size
             <div class="card">
                 <div class="card-body">
                     <div class="card-head">
-
                         <h3>All Product</h3>
                         <a class="btn btn-success btn-sm pull-right m-2" href="{{ route('product.add') }}"><i class="fa fa-plus-circle mr-1" ></i>Add Product</a>
                         <!-- --------error message------------ -->
@@ -53,6 +52,7 @@ Size
                 <thead>
                     <tr>
                         <th>SL.</th>
+                        <th>Code</th>
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Product Name</th>
@@ -65,6 +65,7 @@ Size
                     @foreach ($products as $key => $product)
                     <tr>
                         <td> {{$key+1}} </td>
+                        <td>#{{$product->code}} </td>
                         <td> {{$product->category->name}} </td>
                         <td>{{$product->brand->name}}</td>
                         <td>{{$product->name}}</td>
@@ -77,7 +78,7 @@ Size
 
                                 <a class="btn btn-primary btn-sm" href=" {{route('product.edit',$product->id)}}"> <i class="fa fa-edit" ></i> </a>
 
-                                <a class="btn btn-danger btn-sm" href="{{route('product.delete',$product->id)}}" data-token=" {{csrf_token()}}" data-id="{{$product->id}}" > <i class="fa fa-trash" ></i> </a>
+                                <a id="delete" class="btn btn-danger btn-sm" href="{{route('product.delete',$product->id)}}" data-token=" {{csrf_token()}}" data-id="{{$product->id}}" > <i class="fa fa-trash" ></i> </a>
                             </td>
 
                     </tr>

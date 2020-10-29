@@ -78,54 +78,21 @@
                 <div class="aside">
                     <h3 class="aside-title">Brand</h3>
                     <div class="checkbox-filter">
+                        @foreach ($brands as $brand)
                         <div class="input-checkbox">
-                            <input type="checkbox" id="brand-1">
-                            <label for="brand-1">
+                            <label for="category-1">
                                 <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
+                                    <a href=" {{route('product_by_brand',$brand->brand_id)}} ">{{$brand->brand->name}}</a>
+                                <small>
+                                (@php
+                                    $brand = App\Models\Product::where('brand_id',$brand->brand_id)->get();
+                                    $Count = count($brand);
+                                    echo $Count;
+                                @endphp)
+                                    </small>
                             </label>
                         </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-2">
-                            <label for="brand-2">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-3">
-                            <label for="brand-3">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-4">
-                            <label for="brand-4">
-                                <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-5">
-                            <label for="brand-5">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-6">
-                            <label for="brand-6">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- /aside Widget -->
@@ -205,7 +172,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img src="/public/Upload/Product_images/{{$product->image}}" alt="">
+                                <img width="300" height="300"  src="/public/Upload/Product_images/{{$product->image}}" alt="">
                                 <div class="product-label">
                                     <span class="new">NEW</span>
                                 </div>

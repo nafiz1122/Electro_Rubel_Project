@@ -1,4 +1,5 @@
 @extends('layouts.client_master')
+
 @section('content')
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
@@ -11,7 +12,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">All Categories</a></li>
                     <li><a href="#">Accessories</a></li>
-                    <li class="active">Headphones (227,490 Results)</li>
+                    <li class="active">(227,490 Results)</li>
                 </ul>
             </div>
         </div>
@@ -92,6 +93,7 @@
                             </label>
                         </div>
                         @endforeach
+
                     </div>
                 </div>
                 <!-- /aside Widget -->
@@ -99,38 +101,23 @@
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Top selling</h3>
+                    <!-- product -->
+                    @php
+                        $products = App\Models\Product::inRandomOrder()->get();
+                    @endphp
+                    <!-- product -->
+                    @foreach ($products as $product)
                     <div class="product-widget">
                         <div class="product-img">
-                            <img  src="/client_assets/img/product01.png" alt="">
+                            <img src="/public/Upload/Product_images/{{$product->image}}" alt="">
                         </div>
                         <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                            <p class="product-category"> {{$product['category']['name']}} </p>
+                            <h3 class="product-name"><a href="#"> {{$product->name}} </a></h3>
                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                         </div>
                     </div>
-
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product02.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        </div>
-                    </div>
-
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product03.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- /aside Widget -->
             </div>
@@ -139,7 +126,7 @@
             <!-- STORE -->
             <div id="store" class="col-md-9">
                 <!-- store top filter -->
-                {{-- <div class="store-filter clearfix">
+                <div class="store-filter clearfix">
                     <div class="store-sort">
                         <label>
                             Sort By:
@@ -161,7 +148,7 @@
                         <li class="active"><i class="fa fa-th"></i></li>
                         <li><a href="#"><i class="fa fa-th-list"></i></a></li>
                     </ul>
-                </div> --}}
+                </div>
                 <!-- /store top filter -->
 
                 <!-- store products -->
@@ -171,16 +158,16 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img width="300" height="300" src="public/Upload/Product_images/{{$product->image}}" alt="">
+                                <img width="300" height="300"  src="/public/Upload/Product_images/{{$product->image}}" alt="">
                                 <div class="product-label">
                                     <span class="new">NEW</span>
                                 </div>
                             </div>
                             {{-- <del class="product-old-price">$990.00</del> --}}
                             <div class="product-body">
-                                <p class="product-category">{{$product->category->name}}</p>
+                                <p class="product-category">{{$product->category->category_name}}</p>
                                 <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
-                                <h4 class="product-price">{{$product->price}}</h4>
+                                <h4 class="product-price">{{$product->price}} TK </h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -195,6 +182,7 @@
                                 </div>
                             </div>
                             <div class="add-to-cart">
+
                                <a href="{{url('product_details/'.$product->slug)}}"> <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
                             </div>
                         </div>
@@ -212,9 +200,10 @@
                 <!-- store bottom filter -->
                 <div class="store-filter">
                     <span class="store-qty">Showing 20-100 products</span>
-                    <div class="btn btn-primary btn-sm  pull-right">
-                        <p class="text-white">{{$products->links()}}</p>
+                    <div class="pagination pull-right">
+
                     </div>
+
                 </div>
                 <!-- /store bottom filter -->
             </div>
@@ -225,4 +214,6 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+
+
 @endsection

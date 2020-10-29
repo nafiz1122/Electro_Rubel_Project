@@ -175,8 +175,8 @@
                                         @php
                                         $products = App\Models\Product::inRandomOrder()->get();
 
-                                    @endphp
-                                     <!-- product -->
+                                        @endphp
+                                        <!-- product -->
                                      @foreach ($products  as $product)
                                      <div class="product">
                                          <div class="product-img">
