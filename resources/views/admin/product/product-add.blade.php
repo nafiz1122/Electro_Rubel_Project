@@ -14,6 +14,14 @@ Size
         width: 70px;
         border:1px solid rgb(197, 193, 193);
     }
+    .bootstrap-tagsinput .tag {
+    margin: 2px;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #222;
+    border-radius: 5px;
+    padding: 2px 5px;
+    }
 </style>
 <div class="content-header">
     <div class="container-fluid">
@@ -79,14 +87,14 @@ Size
                         </div>
                         <div class="form-group col-md-4">
                           <label>Input Sizes</label><br>
-                          <select class="form-control"  name="size_name[]" multiple data-role="tagsinput">
+                          <select class="form-control inputMul"  name="size_name[]" multiple data-role="tagsinput">
                             <option value="small">small</option>
                             <option value="Large">Large</option>
                           </select>
                         </div>
                         <div class="form-group col-md-4">
                           <label>Input Colors</label><br>
-                          <select class="form-control" name="color_name[]" multiple data-role="tagsinput">
+                          <select class="form-control inputMul" name="color_name[]" multiple data-role="tagsinput">
                             <option value="Black">Black</option>
                             <option value="White">White</option>
                           </select>

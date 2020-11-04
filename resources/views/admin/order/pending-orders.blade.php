@@ -41,7 +41,13 @@ Order
                         <!-- --------error message------------ -->
                         {{--  --------NOTIFICATION------  --}}
                         @if(Session::has('message'))
-                            <p class="alert alert-info mt-2">{{ Session::get('message') }}</p>
+                            {{-- <p class="alert alert-info mt-2">{{ Session::get('message') }}</p> --}}
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                {{ Session::get('message') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span class="text-white" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
                         @endif
 
                     </div>
@@ -81,7 +87,8 @@ Order
                              @endif
                         </td>
                         <td>
-                            <a href=" {{route('order.active',$order->id)}} " class="btn btn-info btn-sm" ><i class="fa fa-like"></i>Active</a>
+                            <a id="active" href=" {{route('order.active',$order->id)}} " class="btn btn-info btn-sm" ><i class="fas fa-thumbs-up"></i></a>
+                            <a id="active" href=" {{route('order.delete',$order->id)}} " class="btn btn-danger btn-sm" ><i class="fa fa-trash" ></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -93,4 +100,34 @@ Order
         </div>
     </div>
 </div>
+<!-- Sweet Alert Notification -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ {{-- ///sweet alert --}}
+ <script>
+
+    $(document).on('click','#active',function(e){
+          e.preventDefault();
+          var link = $(this).attr("href");
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "Approved this Order!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, Active it!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = link;
+                  Swal.fire(
+                  'Approved!',
+                  'Your Order has been Approved.',
+                  'success'
+                  )
+              }
+          })
+    });
+</script>
+
 @endsection

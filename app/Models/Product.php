@@ -14,6 +14,7 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+    
     public function brand()
     {
         return $this->belongsTo('App\Models\Brand', 'brand_id', 'id');

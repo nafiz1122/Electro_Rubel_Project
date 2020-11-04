@@ -54,131 +54,7 @@
         <!-----Preloader------->
 
 		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /TOP HEADER -->
-
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
-
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
-								</form>
-							</div>
-						</div>
-						<!-- /SEARCH BAR -->
-                         <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix">
-                    <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <div>
-                            <a href="#">
-                                <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
-                            </a>
-                        </div>
-                        <!-- /Wishlist -->
-
-                        <!-- Cart -->
-                                @php
-                                    $contents = Cart::content();
-                                    $total = 0;
-                                    $itemCount = 0;
-                                @endphp
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
-                                <div class="qty">
-                                    {{Cart::count()}}
-                                </div>
-                            </a>
-                            <div class="cart-dropdown">
-                                <div class="cart-list">
-                                    @foreach ($contents as $item)
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="public/Upload/Product_images/{{ $item->options->image }}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">{{ $item->name }}</a></h3>
-                                            <h4 class="product-price"><span class="qty">{{ $item->qty }}x</span>{{ $item->price }} TK</h4>
-                                        </div>
-                                        <a href="{{route('cart.delete',$item->rowId)}}" class="delete"><i class="fa fa-close"></i></a>
-                                    </div>
-                                    @php
-                                    $itemCount++;
-                                    $total +=$item->subtotal;
-                                    @endphp
-                                    @endforeach
-                                </div>
-                                <div class="cart-summary">
-                                    <small class="itemVal" >{{$itemCount}} Item(s) selected</small>
-                                    <h5>SUBTOTAL: {{$total}} TK</h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <a href=" {{route('cart.show')}} ">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Cart -->
-
-                        <!-- Menu Toogle -->
-                        <div class="menu-toggle">
-                            <a href="#">
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
-                        </div>
-                        <!-- /Menu Toogle -->
-                    </div>
-                </div>
-                <!-- /ACCOUNT -->
-
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
+		@include('layouts.header')
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
@@ -191,8 +67,11 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href=" {{route('index')}} ">Home</a></li>
                         <li><a href="{{route('product_store')}}">STORE</a></li>
+                        @php
+                            $categories = App\Models\Product::select('category_id')->groupBy('category_id')->get();
+                        @endphp
 						@foreach ($categories as $category)
-                            <li><a href="{{route('product_by_category',$category->category_id)}}"> {{$category->category->name}} </a></li>
+                        <li><a href=" {{route('product_by_category',$category->category_id)}} ">{{$category->category->name}}</a></li>
                         @endforeach
 
 					</ul>
@@ -257,11 +136,12 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<p>We provide all kinds of computer & Laptop accessories sales, service. we have CC Camera sales and installation.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>Mirpur Circle-10,Shah- Ali Plaza 1216 Dhaka.</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>01617-831579</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>0197-2040999</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>winnertechnolgy2017<br>@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>
@@ -329,7 +209,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a style="text-decoration: none;color:#007bff!important" href="https://konikadesignsbd.com" target="_blank">Konika designs bd</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -343,7 +223,7 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="/client_assets/js/jquery.min.js"></script>
+        <script src="/client_assets/js/jquery.min.js"></script>
 		<script src="/client_assets/js/bootstrap.min.js"></script>
         <script src="/client_assets/js/slick.min.js"></script>
 
@@ -367,7 +247,7 @@
         </script>
         <!----preloader---->
 		<!-- //slick js -->
-		<script>
+		{{-- <script>
 			$('.slick_slider').slick({
 				infinite: true,
 				slidesToShow: 3,
@@ -375,6 +255,43 @@
 				autoplay: true,
   				autoplaySpeed: 3000,
 			});
+        </script> --}}
+        <script>
+            $('.slick_slider').slick({
+                        dots: true,
+                        infinite: false,
+                        speed: 300,
+                        slidesToShow: 3,
+                        slidesToScroll: 4,
+                        responsive: [
+                            {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                            },
+                            {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 2
+                            }
+                            },
+                            {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                            }
+                            // You can unslick at a given breakpoint now by adding:
+                            // settings: "unslick"
+                            // instead of a settings object
+                        ]
+                        });
         </script>
          {{-- toastr script --}}
     <script>

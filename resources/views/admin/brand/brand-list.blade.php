@@ -72,6 +72,7 @@
                         <tr>
                             <th>SL.</th>
                             <th>Brand Name</th>
+                            <th>Product Count</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -80,9 +81,19 @@
                             <tr>
                                 <td> {{$key+1}} </td>
                                 <td> {{$brand->name}}</td>
+                                <td>
+                                    @php
+                                        $product = App\Models\Product::where('brand_id',$brand->id)->get();
+                                            echo count($product);
+
+                                    @endphp
+                                </td>
                                 <td width="15%" >
                                     <a class="btn btn-info btn-sm" href=" {{route('brand.edit',$brand->id)}} "> <i class="fa fa-edit" ></i> </a>
+
+                                    @if (count($product) == 0 )
                                     <a id="delete" class="btn btn-danger btn-sm" href="{{route('brand.delete',$brand->id)}}"> <i class="fa fa-trash" ></i> </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

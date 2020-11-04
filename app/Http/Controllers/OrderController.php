@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function pending_order()
     {
-        $orders = Order::where('status','0')->get();
+        $orders = Order::orderBy('id','desc')->where('status','0')->get();
         return view('admin.order.pending-orders',compact('orders'));
     }
 
@@ -39,5 +39,14 @@ class OrderController extends Controller
 
         return back()->with('message',"Order Approved Successfully");
 
+    }
+
+    //order Delete
+    public function delete_order($id)
+    {
+        $order_data = Order::find($id);
+        $order_data->delete();
+
+        return back()->with('message',"Order Delete Successfully");
     }
 }

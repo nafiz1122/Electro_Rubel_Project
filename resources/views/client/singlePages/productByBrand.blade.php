@@ -12,7 +12,6 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">All Categories</a></li>
                     <li><a href="#">Accessories</a></li>
-                    <li class="active">(227,490 Results)</li>
                 </ul>
             </div>
         </div>
@@ -103,10 +102,10 @@
                     <h3 class="aside-title">Top selling</h3>
                     <!-- product -->
                     @php
-                        $products = App\Models\Product::inRandomOrder()->get();
+                        $productss = App\Models\Product::all()->random(5);
                     @endphp
                     <!-- product -->
-                    @foreach ($products as $product)
+                    @foreach ($productss as $product)
                     <div class="product-widget">
                         <div class="product-img">
                             <img src="/public/Upload/Product_images/{{$product->image}}" alt="">
@@ -199,7 +198,6 @@
 
                 <!-- store bottom filter -->
                 <div class="store-filter">
-                    <span class="store-qty">Showing 20-100 products</span>
                     <div class="pagination pull-right">
 
                     </div>

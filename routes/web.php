@@ -43,6 +43,10 @@ Route::get('/product_details/{slug}',[App\Http\Controllers\ClientController::cla
 Route::get('/checkout',[App\Http\Controllers\CheckoutController::class, 'checkout'])->name('customer.checkout');
 Route::post('/checkoutStore',[App\Http\Controllers\CheckoutController::class, 'checkout_store'])->name('checkout.store');
 
+//product Search
+Route::post('/Product-search',[App\Http\Controllers\ClientController::class, 'productSearch'])->name('product.search');
+Route::get('/Product-get',[App\Http\Controllers\ClientController::class, 'productGet'])->name('product.get');
+
 
 
 
@@ -111,6 +115,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
         Route::get('/orderDetials/{id}',[App\Http\Controllers\OrderController::class, 'order_details'])->name('order.details');
 
         Route::get('/pendingActive/{id}',[App\Http\Controllers\OrderController::class, 'active_order'])->name('order.active');
+        Route::get('/deleteOrder/{id}',[App\Http\Controllers\OrderController::class, 'delete_order'])->name('order.delete');
 
     });
 });

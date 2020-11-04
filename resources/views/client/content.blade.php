@@ -254,15 +254,15 @@
                                         @endphp
                                      <!-- product -->
                                         <!-- product widget -->
-                                        @foreach ($products1 as $product)
+                                        @foreach ($products1 as $pro1)
                                         <div class="product-widget">
                                             <div class="product-img">
-                                                <img src="public/Upload/Product_images/{{$product->image}}" alt="">
+                                                <img src="public/Upload/Product_images/{{$pro1->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
-                                                <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
-                                                <h4 class="product-price">{{$product->price}} Taka</h4>
+                                                <p class="product-category">{{$pro1->category['name']}}</p>
+                                                <h3 class="product-name"><a href="{{url('product_details/'.$pro1->slug)}}">{{$pro1->name}}</a></h3>
+                                                <h4 class="product-price">{{$pro1->price}} Taka</h4>
                                             </div>
                                         </div>
                                         @endforeach
@@ -270,15 +270,15 @@
                                     </div>
                                     <div>
                                         <!-- product widget -->
-                                        @foreach ($products2 as $product)
+                                        @foreach ($products2 as $pro)
                                         <div class="product-widget">
                                             <div class="product-img">
-                                                <img src="public/Upload/Product_images/{{$product->image}}" alt="">
+                                                <img src="public/Upload/Product_images/{{ $pro->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
-                                                <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
-                                                <h4 class="product-price">{{$product->price}} Taka</h4>
+                                                <p class="product-category">{{ $pro->category->name}}</p>
+                                                <h3 class="product-name"><a href="{{url('product_details/', $pro->slug)}}">{{ $pro->name}}</a></h3>
+                                                <h4 class="product-price">{{ $pro->price}} Taka</h4>
                                             </div>
                                         </div>
                                         @endforeach
@@ -305,7 +305,7 @@
                                                 <img src="public/Upload/Product_images/{{$product->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
+                                                <p class="product-category">{{$product->category['name']}}</p>
                                                 <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
                                                 <h4 class="product-price">{{$product->price}} Taka</h4>
                                             </div>
@@ -322,7 +322,7 @@
                                                 <img src="public/Upload/Product_images/{{$product->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
+                                                <p class="product-category">{{$product->category->name}}</p>
                                                 <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
                                                 <h4 class="product-price">{{$product->price}} Taka</h4>
                                             </div>
@@ -352,7 +352,7 @@
                                                 <img src="public/Upload/Product_images/{{$product->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
+                                                <p class="product-category">{{$product->category->name}}</p>
                                                 <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
                                                 <h4 class="product-price">{{$product->price}} Taka</h4>
                                             </div>
@@ -371,7 +371,7 @@
                                                 <img src="public/Upload/Product_images/{{$product->image}}" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">{{$product->category->category_name}}</p>
+                                                <p class="product-category">{{$product->category->name}}</p>
                                                 <h3 class="product-name"><a href="{{url('product_details/'.$product->slug)}}">{{$product->name}}</a></h3>
                                                 <h4 class="product-price">{{$product->price}} Taka</h4>
                                             </div>

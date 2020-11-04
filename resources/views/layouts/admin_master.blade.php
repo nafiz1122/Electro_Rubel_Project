@@ -68,7 +68,7 @@
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href=" {{url('/dashboard')}} ">
-                        Nafiz Ahmed
+                        {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
 
@@ -108,12 +108,12 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href=" {{url('/dashboard')}} " class="d-block">Nafiz Ahmed</a>
+                    <a href=" {{url('/dashboard')}} " class="d-block">{{Auth::user()->name}}</a>
                     </div>
                 </div>
 
                 <!-- SidebarSearch Form -->
-                <div class="form-inline">
+                {{-- <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                             aria-label="Search">
@@ -123,7 +123,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -325,9 +325,8 @@
     <script src="/admin_assets/dist/js/bootstrap-tagsinput.js"></script>
     <script src="/admin_assets/dist/js/bootstrap-tagsinput-angular.js"></script>
     <!--  Data Table js -->
-
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/admin_assets/dist/js/jquery.dataTables.min.js"></script>
+    <script src="/admin_assets/dist/js/dataTables.bootstrap4.min.js"></script>
 
             {{-- //for image show --}}
             <script>
@@ -474,10 +473,6 @@
                     }
                 })
           });
-
-
-
-
       </script>
 </body>
 
